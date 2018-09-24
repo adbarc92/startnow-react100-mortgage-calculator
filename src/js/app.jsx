@@ -2,6 +2,7 @@ import React from 'react';
 
 // https://reactjs.org/docs/forms.html
 // https://getbootstrap.com/docs/3.3/css/
+// https://reactjs.org/docs/rendering-elements.html
 
 export default class App extends React.Component {
   constructor() {
@@ -23,13 +24,13 @@ export default class App extends React.Component {
     })
   }
 
-  handleCalculate(e){
+  handleCalculate(e) {
     e.preventDefault();
     var balance = parseFloat(this.state.balance);
-    var rate = parseFloat(this.state.rate) / 100 / 12);
+    var rate = (parseFloat(this.state.rate) / 1200);
     console.log(rate);
     var term = parseFloat(this.state.term) * 12;
-    var value = balance * ( rate * ( 1 + rate )**term ) / ( ( ( 1 + rate )**term ) - 1 );
+    var value = balance * (rate * (1 + rate) ** term) / (((1 + rate) ** term) - 1);
     this.setState({
       output: `$${value.toFixed(2)} is your payment.`
     })
@@ -55,7 +56,7 @@ export default class App extends React.Component {
           <div className='form-group'>
             <label for='term' className='col-sm-2 control-label'>Term</label>
             <div className='col-sm-10'>
-              <select className='form-control' value={ this.state.term } name='term' onChange={ this.handleChange }>
+              <select className='form-control' value={this.state.term} name='term' onChange={this.handleChange}>
                 <option value='15'>15</option>
                 <option value='30'>30</option>
               </select>
@@ -63,7 +64,7 @@ export default class App extends React.Component {
           </div>
           <div className='form-group'>
             <div className="col-sm-offset-2 col-sm-10">
-              <button name='submit' className='btn btn-default' onClick={ this.handleCalculate }>Submit</button>
+              <button name='submit' className='btn btn-default' onClick={this.handleCalculate}>Submit</button>
             </div>
           </div>
           <div className='form-group'>
